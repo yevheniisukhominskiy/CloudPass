@@ -1,0 +1,41 @@
+﻿<Application x:Class="CloudPass.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CloudPass"
+             StartupUri="View\MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--Styles Material design-->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--Styles for text-->
+            <Style x:Key="MainTextLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+
+            <!--Styles for text-->
+            <Style x:Key="MainTextBox" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Margin" Value="5 0 0 0"/>
+            </Style>
+
+            <!--Styles for additional headers-->
+            <Style x:Key="AddHeader" TargetType="Label">
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+            </Style>
+
+            <!--Styles for the headers-parametres-->
+            <Style x:Key="ParamHeader" TargetType="Label">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="Foreground" Value="#787d79"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
