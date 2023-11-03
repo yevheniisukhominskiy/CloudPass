@@ -1,4 +1,4 @@
-﻿using CloudPass.ViewModels;
+﻿using CloudPass.ViewModels;  // Import the namespace containing DataManegerViewModel.
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +23,10 @@ namespace CloudPass
         {
             InitializeComponent();
 
+            // Create an instance of DataManegerViewModel.
             DataManegerViewModel viewModel = new DataManegerViewModel();
+
+            // Set the ViewModel as the DataContext for the main window.
             this.DataContext = viewModel;
         }
     }

@@ -8,8 +8,9 @@ namespace CloudPass.Model
 {
     public class DataModel
     {
-        public string Url { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
+        // Properties to store data for a specific entry:
+        public string Url { get; set; }       // URL of a website or service.
+        public string Username { get; set; }  // Username or account name.
+        public string Password { get; set; }  // Password associated with the account.
     }
 }
