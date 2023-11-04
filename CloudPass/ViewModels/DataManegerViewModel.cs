@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Input;
 using CloudPass.Model;
 using CloudPass.RelayComand;
+using MaterialDesignThemes.Wpf;
 
 namespace CloudPass.ViewModels
 {
@@ -37,6 +38,13 @@ namespace CloudPass.ViewModels
             }
         }
 
+        private SnackbarMessageQueue snackbarMessageQueue = new SnackbarMessageQueue();
+        public SnackbarMessageQueue SnackbarMessageQueue
+        {
+            get { return snackbarMessageQueue; }
+            set { snackbarMessageQueue = value; }
+        }
+
         // Constructor for the DataManegerViewModel class.
         public DataManegerViewModel()
         {
@@ -63,6 +71,7 @@ namespace CloudPass.ViewModels
             if (SelectedData != null)
             {
                 Clipboard.SetText(SelectedData.Username);
+                SnackbarMessageQueue.Enqueue("Сopied successfully!");
             }
         }
 
@@ -78,6 +87,7 @@ namespace CloudPass.ViewModels
             if (SelectedData != null)
             {
                 Clipboard.SetText(SelectedData.Password);
+                SnackbarMessageQueue.Enqueue("Сopied successfully!");
             }
         }
 
