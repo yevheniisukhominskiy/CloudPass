@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CloudPass"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800" Background="#ffdadada" FontSize="16">
+        Title="MainWindow" Height="520" Width="800" Background="#ffdadada" FontSize="16">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -28,16 +28,29 @@
 
         <!--Window of the information-->
         <Border Grid.Column="2" Background="White" CornerRadius="15" Padding="20">
-            <StackPanel>
-                
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <!--Header of the templete-->
+                    <RowDefinition Height="Auto"/>
+                    <!--Splitter-->
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                    <!--Warning window-->
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="50"/>
+                    <!--View the data window-->
+                </Grid.RowDefinitions>
+
                 <!--Header of the templete-->
-                <Grid Margin="0 0 0 5">
+                <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Content="{Binding SelectedData.Url}" FontSize="28" FontWeight="Bold" HorizontalAlignment="Left"/>
+                    <Label Grid.Column="0" Content="{Binding SelectedData.Url}" FontSize="28" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     <Grid Grid.Column="1" HorizontalAlignment="Right" Width="150">
                         <Button Content="Edit" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignFlatButton}"/>
                         <Button Content="Remove" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatButton}"/>
@@ -45,94 +58,70 @@
                 </Grid>
 
                 <!--Splitter-->
-                <Border Background="LightGray" Height="1" Margin="0 0 0 20"/>
+                <Grid Grid.Row="1">
+                    <Border Background="LightGray" Height="1"/>
+                </Grid>
 
                 <!--Warning window-->
-                <Border Margin="0 0 0 10" CornerRadius="15" BorderBrush="LightGray" BorderThickness="1" Padding="10">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+                <Grid Grid.Row="3">
+                    <Border CornerRadius="15" BorderBrush="LightGray" BorderThickness="1" Padding="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                        <Label Grid.Row="0" Content="Be aware of the risks" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource AddHeader}"/>
-                        <Button Grid.Row="0" Content="Read more" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="DarkGray" Style="{StaticResource MaterialDesignFlatButton}"/>
-                        <TextBlock Grid.Row="1" Margin="5 0 0 0" VerticalAlignment="Bottom" Foreground="Gray" Style="{StaticResource MainTextBox}" TextWrapping="Wrap" Text="To ensure the security of your data, always create strong passwords. Use a combination of uppercase and lowercase letters, numbers, and special characters..."/>
-                    </Grid>
-                </Border>
+                            <Label Grid.Row="0" Content="Be aware of the risks" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource AddHeader}"/>
+                            <Button Grid.Row="0" Content="Read more" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="DarkGray" Style="{StaticResource MaterialDesignFlatButton}"/>
+                            <TextBlock Grid.Row="1" Margin="5 0 0 0" VerticalAlignment="Bottom" Foreground="Gray" Style="{StaticResource MainTextBox}" TextWrapping="Wrap" Text="To ensure the security of your data, always create strong passwords. Use a combination of uppercase and lowercase letters, numbers, and special characters..."/>
+                        </Grid>
+                    </Border>
+                </Grid>
 
                 <!--View the data window-->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+                <Grid Grid.Row="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                    <StackPanel>
-                        <!--Website adress line-->
-                        <Grid Height="45" VerticalAlignment="Top" Margin="0 0 0 10">
-                            <Label Content="Website adress" VerticalAlignment="Top" Style="{StaticResource ParamHeader}"/>
-                            <Label Content="https://www.address.com" VerticalAlignment="Bottom" Style="{StaticResource MainTextLabel}"/>
+                    <Label Content="Information" Grid.Row="0" Style="{StaticResource AddHeader}" FontSize="22"/>
+
+                    <Grid Grid.Row="1">
+                        <Label Content="Website adress" VerticalAlignment="Top" Style="{StaticResource ParamHeader}"/>
+                        <Label Content="https://www.address.com" VerticalAlignment="Bottom" Style="{StaticResource MainTextLabel}"/>
+                    </Grid>
+
+                    <Grid Grid.Row="2" Width="350" HorizontalAlignment="Left">
+                        <Label Content="Username" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource ParamHeader}"/>
+                        <Label Content="{Binding SelectedData.Username}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource MainTextLabel}"/>
+                        <Button Content="Copy" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Command="{Binding CopyUsernameCommand}"/>
+                    </Grid>
+
+                    <Grid Grid.Row="3" Width="350" HorizontalAlignment="Left">
+                        <Label Content="Password" VerticalAlignment="Top" Style="{StaticResource ParamHeader}"/>
+                        <Label Content="{Binding SelectedData.Password}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource MainTextLabel}"/>
+                        <Button Content="Copy" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Command="{Binding CopyPasswordCommand}"/>
+                    </Grid>
+
+                    <Grid Grid.Row="5" Height="45" Margin="1 0 0 0">
+                        <Grid VerticalAlignment="Top">
+                            <Label Content="Created:" FontSize="12" Foreground="#787d79" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            <Label Content="Jyly 17, 2023" FontSize="12" Foreground="#787d79" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100 0 0 0"/>
                         </Grid>
-
-                        <!--Username and password lines-->
-                        <Grid Height="100" VerticalAlignment="Bottom" Margin="0 0 0 10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-
-                            <!--Username line-->
-                            <Grid Height="45" VerticalAlignment="Top">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-
-                                <Grid HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="300" Height="45">
-                                    <Label Content="Username" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource ParamHeader}"/>
-                                    <Label Content="{Binding SelectedData.Username}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource MainTextLabel}"/>
-                                    <Button Content="Copy" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Command="{Binding CopyUsernameCommand}"/>
-                                </Grid>
-                            </Grid>
-                            
-                            <!--Password line-->
-                            <Grid Height="45" VerticalAlignment="Bottom">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="300" Height="45">
-                                    <Label Content="Password" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource ParamHeader}"/>
-                                    <Label Content="{Binding SelectedData.Password}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource MainTextLabel}"/>
-                                    <Button Content="Copy" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Command="{Binding CopyPasswordCommand}"/>
-                                </Grid>
-                            </Grid>
+                        <Grid VerticalAlignment="Bottom">
+                            <Label Content="Modified:" FontSize="12" Foreground="#787d79"/>
+                            <Label Content="July 17, 2023" FontSize="12" Foreground="#787d79" Margin="100 0 0 0"/>
                         </Grid>
-
-                        <!--Date time and modificed lines-->
-                        <Grid Height="45" Width="150" HorizontalAlignment="Left">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Height="45">
-                                <Label Content="Created:" FontSize="12" Foreground="#787d79" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                                <Label Content="Modified:" FontSize="12" Foreground="#787d79" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-
-                            </Grid>
-                            <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="45">
-                                <Label Content="Jyly 17, 2023" FontSize="12" Foreground="#787d79" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                                <Label Content="July 17, 2023" FontSize="12" Foreground="#787d79" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                            </Grid>
-                        </Grid>
-                    </StackPanel>
+                    </Grid>
                 </Grid>
-                <materialDesign:Snackbar MessageQueue="{Binding MessageQueue}" />
-            </StackPanel>
+            </Grid>
         </Border>
-        
+
         <!--Main menu-->
         <Border Grid.Column="4" Background="White" CornerRadius="15">
 
