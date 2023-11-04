@@ -75,6 +75,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\DataModel.cs" />
+    <Compile Include="RelayCommand\RelayCommand.cs" />
     <Compile Include="ViewModels\DataManegerViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

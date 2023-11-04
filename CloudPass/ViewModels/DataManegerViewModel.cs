@@ -5,7 +5,10 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 using CloudPass.Model;
+using CloudPass.RelayComand;
 
 namespace CloudPass.ViewModels
 {
@@ -16,6 +19,11 @@ namespace CloudPass.ViewModels
 
         // A collection of DataModel objects.
         public ObservableCollection<DataModel> Data { get; set; }
+
+        // Custom command of copy login
+        public ICommand CopyUsernameCommand { get; private set; }
+        // Custom command of copy password
+        public ICommand CopyPasswordCommand { get; private set; }
 
         // The currently selected DataModel object.
         private DataModel selectedData;
@@ -44,6 +52,39 @@ namespace CloudPass.ViewModels
             {
                 SelectedData = Data[0];
             }
+
+            CopyUsernameCommand = new RelayCommand(CopyUsername, CanCopyUsername);
+            CopyPasswordCommand = new RelayCommand(CopyPassword, CanCopyPassword);
+        }
+
+        // Process method that realizes copying login
+        private void CopyUsername(object parameter)
+        {
+            if (SelectedData != null)
+            {
+                Clipboard.SetText(SelectedData.Username);
+            }
+        }
+
+        // Check when command copying login can done
+        private bool CanCopyUsername(object parameter)
+        {
+            return SelectedData != null && !string.IsNullOrEmpty(SelectedData.Username);
+        }
+
+        // Process method that realizes copying password
+        private void CopyPassword(object parameter)
+        {
+            if (SelectedData != null)
+            {
+                Clipboard.SetText(SelectedData.Password);
+            }
+        }
+
+        // Check when command copying password can done
+        private bool CanCopyPassword(object parameter)
+        {
+            return SelectedData != null && !string.IsNullOrEmpty(SelectedData.Password);
         }
 
         // A method to raise the PropertyChanged event when a property changes.
