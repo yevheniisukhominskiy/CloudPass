@@ -128,7 +128,54 @@
 
         <!--Main menu-->
         <Border Grid.Column="4" Background="White" CornerRadius="15">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="LightGray" ShadowDepth="0"/>
+            </Border.Effect>
+            
+            <Grid VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="5"/>
+                </Grid.RowDefinitions>
 
+                <Button Grid.Row="0"  Style="{StaticResource IconButtonsBack}">
+                    <Button.Content>
+                        <materialDesign:PackIcon Kind="Account" Style="{StaticResource IconButtons}"/>
+                    </Button.Content>
+                </Button>
+
+                <Border Grid.Row="1" Background="LightGray" Height="1"/>
+
+                <Button Grid.Row="2"  Style="{StaticResource IconButtonsBack}">
+                    <Button.Content>
+                        <materialDesign:PackIcon Kind="CloudSyncOutline" Style="{StaticResource IconButtons}"/>
+                    </Button.Content>
+                </Button>
+
+                <Border Grid.Row="3" Background="LightGray" Height="1"/>
+                    
+                <Button Grid.Row="4"  Style="{StaticResource IconButtonsBack}">
+                    <Button.Content>
+                        <materialDesign:PackIcon Kind="CogOutline" Style="{StaticResource IconButtons}"/>
+                    </Button.Content>
+                </Button>
+
+                <Border Grid.Row="5" Background="LightGray" Height="1"/>
+                    
+                <Button Grid.Row="6"  Style="{StaticResource IconButtonsBack}">
+                    <Button.Content>
+                        <materialDesign:PackIcon Kind="KeyVariant" Style="{StaticResource IconButtons}"/>
+                    </Button.Content>
+                </Button>
+
+                <Border Grid.Row="17" Background="LightGray" Height="1"/>
+            </Grid>
         </Border>
     </Grid>
 </Window>
