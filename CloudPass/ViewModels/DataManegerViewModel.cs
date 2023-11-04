@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -35,14 +36,28 @@ namespace CloudPass.ViewModels
             { 
                 selectedData = value; 
                 OnPropertyChanged(nameof(SelectedData));
+                UpdateFullUrl();
             }
         }
 
+        // Property to show floating tip
         private SnackbarMessageQueue snackbarMessageQueue = new SnackbarMessageQueue();
         public SnackbarMessageQueue SnackbarMessageQueue
         {
             get { return snackbarMessageQueue; }
             set { snackbarMessageQueue = value; }
+        }
+
+        // Property to show full web adress of templete
+        private string fullUrl;
+        public string FullUrl
+        {
+            get { return fullUrl; }
+            set
+            {
+                fullUrl = value;
+                OnPropertyChanged(nameof(FullUrl));
+            }
         }
 
         // Constructor for the DataManegerViewModel class.
@@ -95,6 +110,14 @@ namespace CloudPass.ViewModels
         private bool CanCopyPassword(object parameter)
         {
             return SelectedData != null && !string.IsNullOrEmpty(SelectedData.Password);
+        }
+
+        private void UpdateFullUrl()
+        {
+            if (SelectedData != null)
+            {
+                FullUrl = ("https://" + SelectedData.Url).ToLower().Trim();
+            }
         }
 
         // A method to raise the PropertyChanged event when a property changes.
